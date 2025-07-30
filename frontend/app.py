@@ -125,8 +125,8 @@ def main():
 
     with st.sidebar:
         st.header("Database Settings")
-        default_db = os.getenv('MYSQL_DATABASE', 'college')
-        database = st.text_input("Database Name", value=default_db)
+        user_input_db = st.text_input("Database Name", value="", placeholder="Database Name")
+        database = user_input_db.strip()
 
         st.markdown("---")
         st.header("Feature Navigation")
@@ -169,6 +169,7 @@ def main():
                 with st.expander(f"Table: {table}"):
                     df = pd.DataFrame(columns)
                     st.dataframe(df, use_container_width=True)
+    
 
     if run_query_btn and query:
         st.session_state.page_number = 1  
